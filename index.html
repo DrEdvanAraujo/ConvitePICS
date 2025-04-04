@@ -2,29 +2,36 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Curso de Introdução às PICS e Autocuidado</title>
   <style>
+    <style>
     body {
-      background: #dfece5;
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: start;
-      min-height: 100vh;
-      perspective: 1200px;
-      padding: 20px 0 40px;
+  background: #dfece5;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* ← centraliza também na vertical */
+  min-height: 100vh;
+  perspective: 1200px;
+  padding: 40px 0; /* opcional: cria espaço superior e inferior */
+}
+
+    .scene {
+      width: 360px;
+      height: 580px;
+      position: relative;
+      transform-style: preserve-3d;
+      margin-top: 0px; /* << ADD THIS: Adjust 60px to your desired space */
+      margin-bottom: 40px; /* << Optional: Adds space below the card */
     }
 
     .scene {
-      width: 90vw;
-      max-width: 360px;
-      height: 90vh;
-      max-height: 580px;
+      width: 360px;
+      height: 580px;
       position: relative;
       transform-style: preserve-3d;
-      margin: auto;
+margin: auto
     }
 
     .card {
@@ -83,9 +90,6 @@
 
     .card-content {
       padding: 20px;
-      background: url('https://i.postimg.cc/4dPGwJpp/pnpic.png') center/cover no-repeat;
-      background-color: #ffffffee;
-      background-blend-mode: lighten;
     }
 
     .card-content h3 {
@@ -130,22 +134,21 @@
       display: none;
     }
 
-    .footer {
-      text-align: center;
-      font-size: 0.9em;
-      font-weight: bold;
-      color: white;
-      background-color: #388e3c;
-      padding: 8px 15px 6px 15px;
-      font-style: normal;
-      border-top: 1px solid #2e7d32;
-      border-bottom-left-radius: 25px;
-      border-bottom-right-radius: 25px;
-      line-height: 1.3em;
-      box-sizing: border-box;
-      overflow-wrap: break-word;
-    }
-
+.footer {
+  text-align: center;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: white;
+  background-color: #388e3c;
+  padding: 8px 15px 6px 15px; /* top, right, bottom, left */
+  font-style: normal;
+  border-top: 1px solid #2e7d32;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  line-height: 1.3em;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+}
     .progresso-container {
       margin-top: 15px;
       text-align: center;
@@ -243,26 +246,6 @@
       0% { transform: scale(1); opacity: 1; }
       50% { transform: scale(1.08); opacity: 0.8; }
       100% { transform: scale(1); opacity: 1; }
-    }
-
-    @media (max-width: 480px) {
-      .card-header {
-        font-size: 1em;
-        padding: 15px;
-      }
-
-      .card-content {
-        padding: 15px;
-      }
-
-      .card-content a {
-        font-size: 0.9em;
-      }
-
-      .footer {
-        font-size: 0.8em;
-        padding: 6px 10px;
-      }
     }
   </style>
 </head>
@@ -398,7 +381,7 @@
       }
     }
 
-    porcentagem.textContent = Math.round(((concluidoAte + 1) / 10) * 100) + "%";
+    porcentagem.textContent = `${Math.round(((concluidoAte + 1) / 10) * 100)}%`;
     indexAtual = (indexAtual + 1) % 10;
   }
 
@@ -407,7 +390,7 @@
     const iframe = document.getElementById("iframeModal");
     iframe.src = url;
     modal.style.display = "flex";
-    document.getElementById("check-" + id).style.display = 'inline';
+    document.getElementById(`check-${id}`).style.display = 'inline';
   }
 
   function fecharModal() {
