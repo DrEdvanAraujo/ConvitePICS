@@ -2,47 +2,35 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Curso de Introdução às PICS e Autocuidado</title>
   <style>
-    <style>
     body {
-  background: #dfece5;
-  font-family: 'Segoe UI', sans-serif;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center; /* ← centraliza também na vertical */
-  min-height: 100vh;
-  perspective: 1200px;
-  padding: 40px 0; /* opcional: cria espaço superior e inferior */
-}
-
-    .scene {
-      width: 360px;
-      height: 580px;
-      position: relative;
-      transform-style: preserve-3d;
-      margin-top: 0px; /* << ADD THIS: Adjust 60px to your desired space */
-      margin-bottom: 40px; /* << Optional: Adds space below the card */
+      background: #dfece5;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: start;
+      min-height: 100vh;
+      perspective: 1200px;
+      padding: 20px 0 40px;
     }
 
     .scene {
-      width: 360px;
-      height: 580px;
+      width: 90vw;
+      max-width: 360px;
       position: relative;
       transform-style: preserve-3d;
-margin: auto
+      margin: 0 auto;
     }
 
     .card {
       width: 100%;
-      height: 100%;
       border-radius: 25px;
       background: #ffffff;
       box-shadow: inset 0 0 10px rgba(0,0,0,0.1), 8px 8px 16px rgba(0,0,0,0.15), -4px -4px 12px rgba(255,255,255,0.8);
-      position: absolute;
-      top: 0;
-      left: 0;
+      position: relative;
       transform-style: preserve-3d;
       transition: transform 0.6s ease;
     }
@@ -53,7 +41,6 @@ margin: auto
 
     .face {
       width: 100%;
-      height: 100%;
       position: absolute;
       backface-visibility: hidden;
       border-radius: 25px;
@@ -134,21 +121,22 @@ margin: auto
       display: none;
     }
 
-.footer {
-  text-align: center;
-  font-size: 0.9em;
-  font-weight: bold;
-  color: white;
-  background-color: #388e3c;
-  padding: 8px 15px 6px 15px; /* top, right, bottom, left */
-  font-style: normal;
-  border-top: 1px solid #2e7d32;
-  border-bottom-left-radius: 25px;
-  border-bottom-right-radius: 25px;
-  line-height: 1.3em;
-  box-sizing: border-box;
-  overflow-wrap: break-word;
-}
+    .footer {
+      text-align: center;
+      font-size: 0.9em;
+      font-weight: bold;
+      color: white;
+      background-color: #388e3c;
+      padding: 8px 15px 6px 15px;
+      font-style: normal;
+      border-top: 1px solid #2e7d32;
+      border-bottom-left-radius: 25px;
+      border-bottom-right-radius: 25px;
+      line-height: 1.3em;
+      box-sizing: border-box;
+      overflow-wrap: break-word;
+    }
+
     .progresso-container {
       margin-top: 15px;
       text-align: center;
@@ -247,6 +235,26 @@ margin: auto
       50% { transform: scale(1.08); opacity: 0.8; }
       100% { transform: scale(1); opacity: 1; }
     }
+
+    @media (max-width: 480px) {
+      .card-header {
+        font-size: 1em;
+        padding: 15px;
+      }
+
+      .card-content {
+        padding: 15px;
+      }
+
+      .card-content a {
+        font-size: 0.9em;
+      }
+
+      .footer {
+        font-size: 0.8em;
+        padding: 6px 10px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -256,8 +264,7 @@ margin: auto
     <!-- Frente -->
     <div class="face front">
       <div class="card-header">
-        Curso de Introdução às PICS e Autocuidado <br>
-        📘 40h • 10 Semanas
+        Curso de Introdução às PICS e Autocuidado <br> 📘 40h • 10 Semanas
       </div>
       <div class="card-content">
         <div style="text-align:center; margin-top:5px;">
@@ -280,28 +287,22 @@ margin: auto
           <div class="barra-progresso" id="barraProgresso"></div>
         </div>
       </div>
-      <div class="footer">
-        Promovendo autocuidado e práticas integrativas no SUS
-      </div>
+      <div class="footer">Promovendo autocuidado e práticas integrativas no SUS</div>
     </div>
 
     <!-- Verso -->
     <div class="face back">
       <div class="card-header">
-        Curso de Introdução às PICS e Autocuidado <br>
-        🎥 Playlist Oficial
+        Curso de Introdução às PICS e Autocuidado <br> 🎥 Playlist Oficial
       </div>
       <div class="card-content" style="flex: 1;">
         <div style="width:100%;padding:15px;text-align:center;font-weight:bold;color:#2e7d32;font-size:1.1em;">
           🎥 Playlist do Curso – PICS e Autocuidado
         </div>
         <div style="position:relative;padding-bottom:56.25%;height:0;width:100%;overflow:hidden;border-radius:20px;">
-          <iframe 
-            src="https://www.youtube.com/embed/videoseries?list=PLMDttasyWhMhKX_icMk6ED_b_Gc03SGWz"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-            style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:20px;">
+          <iframe src="https://www.youtube.com/embed/videoseries?list=PLMDttasyWhMhKX_icMk6ED_b_Gc03SGWz"
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:20px;">
           </iframe>
         </div>
         <div style="text-align:center;margin-top:10px;font-size:0.9em;color:#555;">
@@ -311,9 +312,7 @@ margin: auto
           <a href="https://forms.gle/sNEoGfCSbRgd2fio8" target="_blank" class="pulse-link">Inscreva-se</a>
         </div>
       </div>
-      <div class="footer">
-        Práticas Integrativas em destaque no SUS 💚
-      </div>
+      <div class="footer">Práticas Integrativas em destaque no SUS 💚</div>
     </div>
   </div>
 </div>
@@ -354,7 +353,6 @@ margin: auto
     for (let i = 0; i < 10; i++) {
       const bloco = document.createElement("div");
       bloco.className = "bloco-progresso";
-      bloco.style.backgroundColor = "#f44336";
       barra.appendChild(bloco);
       blocos.push(bloco);
     }
@@ -362,10 +360,7 @@ margin: auto
 
   function atualizarBarra() {
     if (indexAtual === 0) {
-      blocos.forEach(bloco => {
-        bloco.classList.remove('concluido');
-        bloco.style.backgroundColor = '#f44336';
-      });
+      blocos.forEach(bloco => bloco.classList.remove('concluido'));
       concluidoAte = -1;
     }
 
@@ -374,11 +369,8 @@ margin: auto
       concluidoAte = indexAtual;
     }
 
-    for (let i = 0; i < 10; i++) {
-      if (i <= concluidoAte) {
-        blocos[i].classList.add('concluido');
-        blocos[i].style.backgroundColor = '#4CAF50';
-      }
+    for (let i = 0; i <= concluidoAte; i++) {
+      blocos[i].classList.add('concluido');
     }
 
     porcentagem.textContent = `${Math.round(((concluidoAte + 1) / 10) * 100)}%`;
@@ -386,18 +378,14 @@ margin: auto
   }
 
   function abrirModal(url, id) {
-    const modal = document.getElementById("modal");
-    const iframe = document.getElementById("iframeModal");
-    iframe.src = url;
-    modal.style.display = "flex";
+    document.getElementById("iframeModal").src = url;
+    document.getElementById("modal").style.display = "flex";
     document.getElementById(`check-${id}`).style.display = 'inline';
   }
 
   function fecharModal() {
-    const modal = document.getElementById("modal");
-    const iframe = document.getElementById("iframeModal");
-    iframe.src = "";
-    modal.style.display = "none";
+    document.getElementById("iframeModal").src = "";
+    document.getElementById("modal").style.display = "none";
   }
 
   criarBarra();
