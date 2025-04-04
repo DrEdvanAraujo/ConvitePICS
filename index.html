@@ -6,27 +6,23 @@
   <style>
     <style>
     body {
-      background: #dfece5;
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      /* padding: 40px; */ /* REMOVE this line */
-      display: flex;          /* Keep for centering */
-      justify-content: center;/* Keep for horizontal centering */
-      /* align-items: center; */ /* CHANGE this */
-      align-items: flex-start;/* TO this - aligns item to the top */
-      /* height: 100vh; */     /* CHANGE this */
-      min-height: 100vh;    /* TO this - allows body to grow if needed */
-      perspective: 1200px;
-      /* Add some padding below if needed, or use margin-bottom on .scene */
-      /* padding-bottom: 40px; */
-    }
+  background: #dfece5;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* ← centraliza também na vertical */
+  min-height: 100vh;
+  perspective: 1200px;
+  padding: 40px 0; /* opcional: cria espaço superior e inferior */
+}
 
     .scene {
       width: 360px;
       height: 580px;
       position: relative;
       transform-style: preserve-3d;
-      margin-top: 60px; /* << ADD THIS: Adjust 60px to your desired space */
+      margin-top: 0px; /* << ADD THIS: Adjust 60px to your desired space */
       margin-bottom: 40px; /* << Optional: Adds space below the card */
     }
 
