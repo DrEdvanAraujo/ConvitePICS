@@ -6,16 +6,16 @@
   <title>Curso de Introdução às PICS e Autocuidado</title>
   <style>
     body {
-  background: #dfece5;
-  font-family: 'Segoe UI', sans-serif;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: start; /* ← agora alinha no topo */
-  min-height: 100vh;
-  perspective: 1200px;
-  padding: 20px 0 40px; /* topo menor, base maior */
-}
+      background: #dfece5;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: start;
+      min-height: 100vh;
+      perspective: 1200px;
+      padding: 20px 0 40px;
+    }
 
     .scene {
       width: 90vw;
@@ -83,6 +83,9 @@
 
     .card-content {
       padding: 20px;
+      background: url('https://i.postimg.cc/4dPGwJpp/pnpic.png') center/cover no-repeat;
+      background-color: #ffffffee;
+      background-blend-mode: lighten;
     }
 
     .card-content h3 {
@@ -395,7 +398,7 @@
       }
     }
 
-    porcentagem.textContent = ${Math.round(((concluidoAte + 1) / 10) * 100)}%;
+    porcentagem.textContent = Math.round(((concluidoAte + 1) / 10) * 100) + "%";
     indexAtual = (indexAtual + 1) % 10;
   }
 
@@ -404,7 +407,7 @@
     const iframe = document.getElementById("iframeModal");
     iframe.src = url;
     modal.style.display = "flex";
-    document.getElementById(check-${id}).style.display = 'inline';
+    document.getElementById("check-" + id).style.display = 'inline';
   }
 
   function fecharModal() {
@@ -430,17 +433,17 @@
     const centerY = rect.height / 2;
     const rotateX = -(y - centerY) / 20;
     const rotateY = (x - centerX) / 20;
-    card.style.transform = rotateX(${rotateX}deg) rotateY(${giroInvertido ? 180 : 0}deg);
+    card.style.transform = `rotateX(${rotateX}deg) rotateY(${giroInvertido ? 180 : 0}deg)`;
   });
 
   scene.addEventListener('mouseleave', () => {
-    card.style.transform = rotateX(0deg) rotateY(${giroInvertido ? 180 : 0}deg);
+    card.style.transform = `rotateX(0deg) rotateY(${giroInvertido ? 180 : 0}deg)`;
   });
 
   document.addEventListener('click', (e) => {
     if (!scene.contains(e.target)) {
       giroInvertido = !giroInvertido;
-      card.style.transform = rotateY(${giroInvertido ? 180 : 0}deg);
+      card.style.transform = `rotateY(${giroInvertido ? 180 : 0}deg)`;
     }
   });
 </script>
