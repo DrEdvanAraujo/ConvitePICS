@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Curso de Introdução às PICS e Autocuidado</title>
+  <style>
+    body {
+      background: #dfece5;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      perspective: 1200px;
+    }
+
+    .scene {
+      width: 360px;
+      height: 580px;
+      position: relative;
+      transform-style: preserve-3d;
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      border-radius: 25px;
+      background: #ffffff;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.1), 8px 8px 16px rgba(0,0,0,0.15), -4px -4px 12px rgba(255,255,255,0.8);
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-style: preserve-3d;
+      transition: transform 0.6s ease;
+    }
+
+    .card:hover {
+      box-shadow: 12px 12px 24px rgba(0,0,0,0.2), -6px -6px 16px rgba(255,255,255,0.9);
+    }
+
+    .face {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      backface-visibility: hidden;
+      border-radius: 25px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .front {
+      background: #fff;
+    }
+
+    .back {
+      background: #fff;
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-header {
+      background: url('https://i.postimg.cc/Gt7yfCd8/Generated-Image-March-18-2025-10-21-AM-png.jpg') center/cover no-repeat;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.2em;
+      border-bottom: 1px solid #2e7d32;
+      border-top-left-radius: 25px;
+      border-top-right-radius: 25px;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card-content h3 {
+      font-size: 1em;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .card-content .divider {
+      height: 1px;
+      background: linear-gradient(to right, #a5d6a7, #c8e6c9);
+      margin: 12px 0 20px 0;
+      border-radius: 50px;
+      opacity: 0.8;
+    }
+
+    .card-content ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .card-content li {
+      margin: 10px 0;
+    }
+
+    .card-content a {
+      text-decoration: none;
+      color: #2e7d32;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 0.95em;
+    }
+
+    .check {
+      color: green;
+      font-size: 1em;
+      margin-left: 5px;
+      display: none;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 0.9em;
+      font-weight: bold;
+      color: white;
+      background-color: #388e3c;
+      padding: 12px 15px;
+      font-style: normal;
+      border-top: 1px solid #2e7d32;
+    }
+
+    .progresso-container {
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .barra-progresso {
+      width: 100%;
+      height: 12px;
+      display: flex;
+      margin-top: 5px;
+      gap: 2px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background: #eee;
+      box-shadow: inset 1px 1px 4px rgba(0,0,0,0.1);
+    }
+
+    .bloco-progresso {
+      flex: 1;
+      background-color: #f44336;
+      transition: background-color 0.3s ease;
+    }
+
+    .bloco-progresso.concluido {
+      background-color: #4CAF50;
+    }
+
+    #descricaoSemana {
+      font-size: 0.9em;
+      margin-top: 5px;
+      font-weight: bold;
+      color: #333;
+      min-height: 1.5em;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .modal-content {
+      background: #fff;
+      width: 90%;
+      max-width: 800px;
+      height: 80vh;
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+      pointer-events: all;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+
+    .modal-content iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      pointer-events: none;
+      flex: 1;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      background: red;
+      color: white;
+      border: none;
+      font-weight: bold;
+      padding: 5px 10px;
+      cursor: pointer;
+      z-index: 10;
+      border-radius: 5px;
+    }
+
+    .pulse-link {
+      animation: pulse 1.8s infinite;
+      color: #2e7d32;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.08); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="scene" id="scene">
+  <div class="card" id="card">
+    <!-- Frente -->
+    <div class="face front">
+      <div class="card-header">
+        Curso de Introdução às PICS e Autocuidado <br>
+        📘 40h • 10 Semanas
+      </div>
+      <div class="card-content">
+        <div style="text-align:center; margin-top:5px;">
+          <a href="https://forms.gle/sNEoGfCSbRgd2fio8" target="_blank" class="pulse-link">Inscreva-se</a>
+        </div>
+        <h3>Explore os módulos:</h3>
+        <div class="divider"></div>
+        <ul>
+          <li><a onclick="abrirModal('https://edaraujofilho.criadorlw.com.br/', 'inicio')">🏠 Início <span id="check-inicio" class="check">✅</span></a></li>
+          <li><a onclick="abrirModal('https://edaraujofilho.criadorlw.com.br/teleaula', 'teleaula')">🎓 TeleAula <span id="check-teleaula" class="check">✅</span></a></li>
+          <li><a onclick="abrirModal('https://edaraujofilho.criadorlw.com.br/salainterativa', 'salainterativa')">🤖 Sala Interativa <span id="check-salainterativa" class="check">✅</span></a></li>
+          <li><a onclick="abrirModal('https://edaraujofilho.criadorlw.com.br/videocast', 'videocast')">👥 VideoCast <span id="check-videocast" class="check">✅</span></a></li>
+          <li><a onclick="abrirModal('https://edaraujofilho.criadorlw.com.br/forum', 'forum')">💬 Fórum <span id="check-forum" class="check">✅</span></a></li>
+          <li><a onclick="abrirModal('https://edaraujofilho.criadorlw.com.br/atividades-avaliativas', 'atividades')">📝 Atividades <span id="check-atividades" class="check">✅</span></a></li>
+          <li><a onclick="abrirModal('https://edaraujofilho.criadorlw.com.br/repositorio', 'repositorio')">📗 Repositório <span id="check-repositorio" class="check">✅</span></a></li>
+        </ul>
+        <div class="progresso-container">
+          <strong>Progresso Total: <span id="porcentagem">0%</span></strong>
+          <div id="descricaoSemana">Semana 1: ---</div>
+          <div class="barra-progresso" id="barraProgresso"></div>
+        </div>
+      </div>
+      <div class="footer">
+        Promovendo autocuidado e práticas integrativas no SUS
+      </div>
+    </div>
+
+    <!-- Verso -->
+    <div class="face back">
+      <div class="card-header">
+        Curso de Introdução às PICS e Autocuidado <br>
+        🎥 Playlist Oficial
+      </div>
+      <div class="card-content" style="flex: 1;">
+        <div style="width:100%;padding:15px;text-align:center;font-weight:bold;color:#2e7d32;font-size:1.1em;">
+          🎥 Playlist do Curso – PICS e Autocuidado
+        </div>
+        <div style="position:relative;padding-bottom:56.25%;height:0;width:100%;overflow:hidden;border-radius:20px;">
+          <iframe 
+            src="https://www.youtube.com/embed/videoseries?list=PLMDttasyWhMhKX_icMk6ED_b_Gc03SGWz"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:20px;">
+          </iframe>
+        </div>
+        <div style="text-align:center;margin-top:10px;font-size:0.9em;color:#555;">
+          Assista aos vídeos da trilha completa do curso diretamente aqui no verso do cartão.
+        </div>
+        <div style="text-align:center; margin-top:12px;">
+          <a href="https://forms.gle/sNEoGfCSbRgd2fio8" target="_blank" class="pulse-link">Inscreva-se</a>
+        </div>
+      </div>
+      <div class="footer">
+        Práticas Integrativas em destaque no SUS 💚
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="fecharModal()">X</button>
+    <iframe id="iframeModal"></iframe>
+  </div>
+</div>
+
+<script>
+  const nomesSemanas = [
+    "Semana 1: PICS e Autocuidado",
+    "Semana 2: Fitoterapia e Florais",
+    "Semana 3: Ayurveda e Yoga",
+    "Semana 4: Meditação e Arte",
+    "Semana 5: Biodança e Bioenergética",
+    "Semana 6: Constelação e Cromoterapia",
+    "Semana 7: Hipnoterapia e Geoterapia",
+    "Semana 8: Reiki e Reflexoterapia",
+    "Semana 9: MTC e Homeopatia",
+    "Semana 10: Apiterapia e Osteopatia"
+  ];
+
+  const barra = document.getElementById("barraProgresso");
+  const descricao = document.getElementById("descricaoSemana");
+  const porcentagem = document.getElementById("porcentagem");
+
+  let indexAtual = 0;
+  let concluidoAte = 0;
+  let blocos = [];
+
+  function criarBarra() {
+    barra.innerHTML = '';
+    blocos = [];
+    for (let i = 0; i < 10; i++) {
+      const bloco = document.createElement("div");
+      bloco.className = "bloco-progresso";
+      bloco.style.backgroundColor = "#f44336";
+      barra.appendChild(bloco);
+      blocos.push(bloco);
+    }
+  }
+
+  function atualizarBarra() {
+    if (indexAtual === 0) {
+      blocos.forEach(bloco => {
+        bloco.classList.remove('concluido');
+        bloco.style.backgroundColor = '#f44336';
+      });
+      concluidoAte = -1;
+    }
+
+    descricao.textContent = nomesSemanas[indexAtual];
+    if (indexAtual > concluidoAte) {
+      concluidoAte = indexAtual;
+    }
+
+    for (let i = 0; i < 10; i++) {
+      if (i <= concluidoAte) {
+        blocos[i].classList.add('concluido');
+        blocos[i].style.backgroundColor = '#4CAF50';
+      }
+    }
+
+    porcentagem.textContent = `${Math.round(((concluidoAte + 1) / 10) * 100)}%`;
+    indexAtual = (indexAtual + 1) % 10;
+  }
+
+  function abrirModal(url, id) {
+    const modal = document.getElementById("modal");
+    const iframe = document.getElementById("iframeModal");
+    iframe.src = url;
+    modal.style.display = "flex";
+    document.getElementById(`check-${id}`).style.display = 'inline';
+  }
+
+  function fecharModal() {
+    const modal = document.getElementById("modal");
+    const iframe = document.getElementById("iframeModal");
+    iframe.src = "";
+    modal.style.display = "none";
+  }
+
+  criarBarra();
+  atualizarBarra();
+  setInterval(atualizarBarra, 3000);
+
+  const card = document.getElementById('card');
+  const scene = document.getElementById('scene');
+  let giroInvertido = false;
+
+  scene.addEventListener('mousemove', e => {
+    const rect = scene.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = -(y - centerY) / 20;
+    const rotateY = (x - centerX) / 20;
+    card.style.transform = `rotateX(${rotateX}deg) rotateY(${giroInvertido ? 180 : 0}deg)`;
+  });
+
+  scene.addEventListener('mouseleave', () => {
+    card.style.transform = `rotateX(0deg) rotateY(${giroInvertido ? 180 : 0}deg)`;
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!scene.contains(e.target)) {
+      giroInvertido = !giroInvertido;
+      card.style.transform = `rotateY(${giroInvertido ? 180 : 0}deg)`;
+    }
+  });
+</script>
+
+</body>
+</html>
