@@ -4,16 +4,30 @@
   <meta charset="UTF-8" />
   <title>Curso de Introdução às PICS e Autocuidado</title>
   <style>
+    <style>
     body {
       background: #dfece5;
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      padding: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      /* padding: 40px; */ /* REMOVE this line */
+      display: flex;          /* Keep for centering */
+      justify-content: center;/* Keep for horizontal centering */
+      /* align-items: center; */ /* CHANGE this */
+      align-items: flex-start;/* TO this - aligns item to the top */
+      /* height: 100vh; */     /* CHANGE this */
+      min-height: 100vh;    /* TO this - allows body to grow if needed */
       perspective: 1200px;
+      /* Add some padding below if needed, or use margin-bottom on .scene */
+      /* padding-bottom: 40px; */
+    }
+
+    .scene {
+      width: 360px;
+      height: 580px;
+      position: relative;
+      transform-style: preserve-3d;
+      margin-top: 60px; /* << ADD THIS: Adjust 60px to your desired space */
+      margin-bottom: 40px; /* << Optional: Adds space below the card */
     }
 
     .scene {
@@ -123,17 +137,21 @@
       display: none;
     }
 
-    .footer {
-      text-align: center;
-      font-size: 0.9em;
-      font-weight: bold;
-      color: white;
-      background-color: #388e3c;
-      padding: 12px 15px;
-      font-style: normal;
-      border-top: 1px solid #2e7d32;
-    }
-
+.footer {
+  text-align: center;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: white;
+  background-color: #388e3c;
+  padding: 8px 15px 6px 15px; /* top, right, bottom, left */
+  font-style: normal;
+  border-top: 1px solid #2e7d32;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  line-height: 1.3em;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+}
     .progresso-container {
       margin-top: 15px;
       text-align: center;
