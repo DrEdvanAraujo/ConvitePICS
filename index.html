@@ -6,33 +6,34 @@
   <title>Curso de Introdução às PICS e Autocuidado</title>
   <style>
     body {
-  background: #dfece5;
-  font-family: 'Segoe UI', sans-serif;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: start; /* ← agora alinha no topo */
-  min-height: 100vh;
-  perspective: 1200px;
-  padding: 20px 0 40px; /* topo menor, base maior */
-}
+      background: #dfece5;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: start;
+      min-height: 100vh;
+      perspective: 1200px;
+      padding: 20px 0 40px;
+    }
 
     .scene {
-  width: 90vw;
-  max-width: 360px;
-  position: relative;
-  transform-style: preserve-3d;
-  margin: 0 auto;
+      width: 90vw;
+      max-width: 360px;
+      position: relative;
+      transform-style: preserve-3d;
+      margin: 0 auto;
+    }
 
     .card {
-  width: 100%;
-  border-radius: 25px;
-  background: #ffffff;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.1), 8px 8px 16px rgba(0,0,0,0.15), -4px -4px 12px rgba(255,255,255,0.8);
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.6s ease;
-}
+      width: 100%;
+      border-radius: 25px;
+      background: #ffffff;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.1), 8px 8px 16px rgba(0,0,0,0.15), -4px -4px 12px rgba(255,255,255,0.8);
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s ease;
+    }
 
     .card:hover {
       box-shadow: 12px 12px 24px rgba(0,0,0,0.2), -6px -6px 16px rgba(255,255,255,0.9);
@@ -40,7 +41,6 @@
 
     .face {
       width: 100%;
-      height: 100%;
       position: absolute;
       backface-visibility: hidden;
       border-radius: 25px;
@@ -264,8 +264,7 @@
     <!-- Frente -->
     <div class="face front">
       <div class="card-header">
-        Curso de Introdução às PICS e Autocuidado <br>
-        📘 40h • 10 Semanas
+        Curso de Introdução às PICS e Autocuidado <br> 📘 40h • 10 Semanas
       </div>
       <div class="card-content">
         <div style="text-align:center; margin-top:5px;">
@@ -288,28 +287,22 @@
           <div class="barra-progresso" id="barraProgresso"></div>
         </div>
       </div>
-      <div class="footer">
-        Promovendo autocuidado e práticas integrativas no SUS
-      </div>
+      <div class="footer">Promovendo autocuidado e práticas integrativas no SUS</div>
     </div>
 
     <!-- Verso -->
     <div class="face back">
       <div class="card-header">
-        Curso de Introdução às PICS e Autocuidado <br>
-        🎥 Playlist Oficial
+        Curso de Introdução às PICS e Autocuidado <br> 🎥 Playlist Oficial
       </div>
       <div class="card-content" style="flex: 1;">
         <div style="width:100%;padding:15px;text-align:center;font-weight:bold;color:#2e7d32;font-size:1.1em;">
           🎥 Playlist do Curso – PICS e Autocuidado
         </div>
         <div style="position:relative;padding-bottom:56.25%;height:0;width:100%;overflow:hidden;border-radius:20px;">
-          <iframe 
-            src="https://www.youtube.com/embed/videoseries?list=PLMDttasyWhMhKX_icMk6ED_b_Gc03SGWz"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-            style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:20px;">
+          <iframe src="https://www.youtube.com/embed/videoseries?list=PLMDttasyWhMhKX_icMk6ED_b_Gc03SGWz"
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:20px;">
           </iframe>
         </div>
         <div style="text-align:center;margin-top:10px;font-size:0.9em;color:#555;">
@@ -319,9 +312,7 @@
           <a href="https://forms.gle/sNEoGfCSbRgd2fio8" target="_blank" class="pulse-link">Inscreva-se</a>
         </div>
       </div>
-      <div class="footer">
-        Práticas Integrativas em destaque no SUS 💚
-      </div>
+      <div class="footer">Práticas Integrativas em destaque no SUS 💚</div>
     </div>
   </div>
 </div>
@@ -362,7 +353,6 @@
     for (let i = 0; i < 10; i++) {
       const bloco = document.createElement("div");
       bloco.className = "bloco-progresso";
-      bloco.style.backgroundColor = "#f44336";
       barra.appendChild(bloco);
       blocos.push(bloco);
     }
@@ -370,10 +360,7 @@
 
   function atualizarBarra() {
     if (indexAtual === 0) {
-      blocos.forEach(bloco => {
-        bloco.classList.remove('concluido');
-        bloco.style.backgroundColor = '#f44336';
-      });
+      blocos.forEach(bloco => bloco.classList.remove('concluido'));
       concluidoAte = -1;
     }
 
@@ -382,11 +369,8 @@
       concluidoAte = indexAtual;
     }
 
-    for (let i = 0; i < 10; i++) {
-      if (i <= concluidoAte) {
-        blocos[i].classList.add('concluido');
-        blocos[i].style.backgroundColor = '#4CAF50';
-      }
+    for (let i = 0; i <= concluidoAte; i++) {
+      blocos[i].classList.add('concluido');
     }
 
     porcentagem.textContent = `${Math.round(((concluidoAte + 1) / 10) * 100)}%`;
@@ -394,18 +378,14 @@
   }
 
   function abrirModal(url, id) {
-    const modal = document.getElementById("modal");
-    const iframe = document.getElementById("iframeModal");
-    iframe.src = url;
-    modal.style.display = "flex";
+    document.getElementById("iframeModal").src = url;
+    document.getElementById("modal").style.display = "flex";
     document.getElementById(`check-${id}`).style.display = 'inline';
   }
 
   function fecharModal() {
-    const modal = document.getElementById("modal");
-    const iframe = document.getElementById("iframeModal");
-    iframe.src = "";
-    modal.style.display = "none";
+    document.getElementById("iframeModal").src = "";
+    document.getElementById("modal").style.display = "none";
   }
 
   criarBarra();
